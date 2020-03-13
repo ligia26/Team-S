@@ -9,11 +9,13 @@
  
   return $result;
 }
-function insert_member($nhs_number, $first_name, $last_name, $dob, $sex, $home_address, $postcode, $home_phone, $mobile_phone, $gp_address, $gp_number, $accessCode) {
-    global $db;
+
   
+function insert_member($nhs_number, $first_name, $last_name, $dob, $sex, $home_address, $postcode, $home_phone, $mobile_phone, $gp_address, $gp_number,$email, $accessCode) {
+    global $db;
+    
     $sql = "INSERT INTO Patient ";
-    $sql .= "(nhs_number, first_name, last_name, date_of_birth, sex, home_address, postcode, home_phone, mobile_phone, gp_address, gp_phone, accessCode) ";
+    $sql .= "(nhs_number, first_name, last_name, date_of_birth, sex, home_address, postcode, home_phone, mobile_phone, gp_address, gp_phone, email, accessCode) ";
     $sql .= "VALUES (";
     $sql .= "'" . $nhs_number . "', ";
     $sql .= "'" . $first_name . "', ";
@@ -27,18 +29,37 @@ function insert_member($nhs_number, $first_name, $last_name, $dob, $sex, $home_a
     //$sql .= "'" . $nhs_number . "', ";
     $sql .= "'" . $gp_address . "', ";
     $sql .= "'" . $gp_number . "',";
+    $sql .= "'" . $email . "',";
     $sql .= "'" . $accessCode . "'";
     $sql .= ")";
     echo $sql;
     $result = mysqli_query($db, $sql);
     if($result) {
-      return true;
+    //   return true;
     } else {
       echo mysqli_error($db);
       db_disconnect($db);
       exit;
     }
-  }
+    $subject = 'Signup verification'; 
+    $message = '
+     
+    Thanks for signing up!
+    Your account has been created, you can now login with your username and password with the credentials below:
+     
+    ------------------------
+    Username: '.$first_name.'
+    Password: '.$accessCode.'
+    ------------------------
+     
+    Please log in to your account:
+    http://kingshospitallondon.herokuapp.com/login.php
+     
+    '; 
+    send_mail($email,$subject,$message);
+  
+
+}
 
 function find_all_users() {
     global $db;
@@ -346,7 +367,6 @@ function access_referral($ID) {
 }
 
   ?>
-
 
 
 
