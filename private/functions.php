@@ -37,23 +37,21 @@ function send_email($email,$subject,$messgae){
   $from = 'pmpriya.music@gmail.com';
   $to      = $email; 
   
-                       
+  echo ($subject);                 
   // $headers = 'From:noreply@chesssoc.com' . "\r\n"; 
-  $headers = array ('From' => $from, 'To' => $to, 'Subject' => $subject, 'Reply-To' => 'pmpriya.music@gmail.com');
-  echo ('header');
+  $headers = array ('From' => $from, 'To' => $to, 'Subject' => $subject);
+   
     $smtp = Mail::factory('smtp', array(
                   'host' => 'ssl://smtp.gmail.com',
-                  'port' => '465',
+                  'port' => '587',
                   'auth' => true,
-                  'username' => 'pmpriya.music@gmail.com',
-                  'password' => 'Priya@010'
+                  'username' => 'ticketmachineproject@gmail.com',
+                  'password' => 'KCLproject'
               ));
   echo ('stmp');
 
   echo($to);
-  echo($subject);
-  echo($message);
-     $mail = $smtp->send($to, $subject, $message);
+     $mail = $smtp->send($to, $headers, $message);
     echo('sends mail');
               if (PEAR::isError($mail)) {
                   echo('<p>' . $mail->getMessage() . '</p>');
