@@ -49,7 +49,11 @@ function send_email($email,$subject,$messgae){
                   'password' => 'Priya@010'
               ));
   echo ('stmp');
-     $mail = $smtp->send($to, $headers, $body);
+
+  echo($to);
+  echo($subject);
+  echo($message);
+     $mail = $smtp->send($to, $subject, $message);
     echo('sends mail');
               if (PEAR::isError($mail)) {
                   echo('<p>' . $mail->getMessage() . '</p>');
