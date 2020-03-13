@@ -19,6 +19,7 @@ if(is_post_request()) {
     $nhs_number = $_POST["nhsnumber"];
     $gp_address = $_POST["gpaddress"];
     $gp_number = $_POST["gpnumber"];
+    $email = $_POST["email"];
     $accessCode = rand(0,9999);
 
 
@@ -35,8 +36,8 @@ if(is_post_request()) {
                        echo $mes;
 
               } else {//.= "(nhs_number, first_name, last_name, date_of_birth, sex, home_address, postcode, home_phone, mobile_phone, gp_address, gp_phone)
-                    $result1 = insert_member($nhs_number, $first_name, $last_name, $dob,$sex, $home_address, $postcode, $home_phone, $mobile_phone, $gp_address, $gp_number, $accessCode);
-
+                    $result1 = insert_member($nhs_number, $first_name, $last_name, $dob,$sex, $home_address, $postcode, $home_phone, $mobile_phone, $gp_address, $gp_number,$email, $accessCode);
+                    
                     //$new_id = mysqli_insert_id($db);
                     redirect_to(url_for('referring_organisation.php'));
               }
@@ -134,6 +135,12 @@ if(is_post_request()) {
      <div class="field-column">
       <label>GP phone number</label> <input type="number" name="gpnumber" placeholder="Required" required>
     </div>
+
+    <!-- email -->
+    <div class="email">
+      <label>Email </label> <input type="email" name="email" placeholder="Required" required>
+    </div>
+
      <!-- submit -->
      <!--<input type ="submit" name="submit"> -->
      <div class="field-column">
@@ -148,4 +155,5 @@ if(is_post_request()) {
 
 
 <?php include(SHARED_PATH . '/footer.php'); ?>
+
 
