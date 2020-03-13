@@ -34,6 +34,7 @@ function insert_member($nhs_number, $first_name, $last_name, $dob, $sex, $home_a
     $sql .= ")";
     echo $sql;
     $result = mysqli_query($db, $sql);
+    echo $result;
     if($result) {
     //   return true;
     } else {
@@ -55,8 +56,9 @@ function insert_member($nhs_number, $first_name, $last_name, $dob, $sex, $home_a
     Please log in to your account:
     http://kingshospitallondon.herokuapp.com/login.php
      
-    '; 
-    send_mail($email,$subject,$message);
+    ';
+    echo $message;
+    send_email($email,$subject,$message);
   
 
 }
@@ -367,7 +369,5 @@ function access_referral($ID) {
 }
 
   ?>
-
-
 
 
