@@ -1,5 +1,8 @@
-<?php
+<?php require_once "Mail.php"; ?>
 
+
+<?php
+ 
 function url_for($script_path) {
   // add the leading '/' if not present
   if($script_path[0] != '/') {
@@ -30,12 +33,14 @@ function is_get_request() {
 }
 function send_email($email,$subject,$messgae){
 
+  echo ('send mail');
   $from = 'pmpriya.music@gmail.com';
   $to      = $email; 
   
                        
   // $headers = 'From:noreply@chesssoc.com' . "\r\n"; 
   $headers = array ('From' => $from, 'To' => $to, 'Subject' => $subject, 'Reply-To' => 'pmpriya.music@gmail.com');
+  echo ('header');
     $smtp = Mail::factory('smtp', array(
                   'host' => 'ssl://smtp.gmail.com',
                   'port' => '465',
@@ -43,14 +48,15 @@ function send_email($email,$subject,$messgae){
                   'username' => 'pmpriya.music@gmail.com',
                   'password' => 'Priya@010'
               ));
-      
+  echo ('stmp');
      $mail = $smtp->send($to, $headers, $body);
-    
+    echo('sends mail');
               if (PEAR::isError($mail)) {
                   echo('<p>' . $mail->getMessage() . '</p>');
                    return false;
               } else {
                   echo('<p>Message successfully sent!</p>');
+                  echo ('successful');
                   return true;
               }
             
@@ -79,4 +85,3 @@ function send_email($email,$subject,$messgae){
 
 
 ?>
-
