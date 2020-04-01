@@ -94,7 +94,7 @@ class Mail
 
      */
 
-    function factory($driver, $params = array())
+    static function factory($driver, $params = array())
 
     {
 
@@ -262,7 +262,8 @@ class Mail
 
                 include_once 'Mail/RFC822.php';
 
- 
+
+               $Mail_RFC822 = new Mail_RFC822();
 
                 $addresses = Mail_RFC822::parseAddressList($value, 'localhost',
 
