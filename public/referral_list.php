@@ -1,29 +1,13 @@
 <?php require_once ('../private/initialise.php'); ?>
 <?php
-
-     $referrals_set = find_all_referrals();
-     $user_set = find_all_patients();
-
-if ($_SESSION['userLevel'] < 1) {
-    redirect_to('index.php');
-
-}
     $patient_set = get_all_patients();
-?> 
-<php $page_title = 'Referrals'; ?>
-<?php include(SHARED_PATH . '/header.php'); ?>
-
-<!-- // settype($var, 'integer');
-// $var = $_GET["delete"] ?? '';
-// if (isset($_GET["delete"])) {
-//     delete_patient($var);
-//     header('Location: patients.php');
-// } -->
-
+?>
+<?php $page_title = 'Referrals';  ?>
+<?php include (SHARED_PATH. '/header.php'); ?> 
 <?php
 if (isset($_POST['submitbtn'])) {
     $data = $_POST['search'];
-    $patient_set = search_by_dob($data);
+    $user_set = search_by_nhs_no($data);
    
 }
 
@@ -31,20 +15,20 @@ if (isset($_POST['submitbtn'])) {
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <div class= "Referrals listing">
-    <h1> Referrals  </h1>
+    <h1 id="title-page"> REFERRALS  </h1>
     <form method="post" class="example" id="searchbar" action="referral_list.php" style="margin:auto;max-width:700px">
-                    <input type="text" name="search" id="searchinput" placeholder="Enter Date of Birth to Search">
+                    <input type="text" name="search" id="searchinput" placeholder="Enter NHS Number to Search">
                     <button name="submitbtn" id="searchbutton" type="submit"><i class="fa fa-search"></i></button>
    </form>
    <br>
    <br>
    <center>
     <table class= "list">
-        <th> Name </th>
-        <th> NHS number </th>
-        <th> Date of Birth </th>
-        <th> Email </th>
-        <th> Referring Doctor Name </th>
+        <th id = "darkblue"> Name </th>
+        <th id = "lightblue"> NHS number </th>
+        <th id = "darkblue"> Date of Birth </th>
+        <th id = "lightblue"> Email </th>
+        <th id = "darkblue"> Referring Doctor Name </th>
     
 
         <?php while ($patient = mysqli_fetch_assoc($patient_set)){ ?>
@@ -62,6 +46,27 @@ if (isset($_POST['submitbtn'])) {
 
     </div>
 
+    <style>
+    a {
+                background-color: white;
+    box-shadow: -1 1px 0 blue;
+    color: rgb(42,103,204);
+    padding: 0.3em 1em;
+    position: relative;
+    text-decoration: none;
+    /* text-transform: uppercase; */
+} 
+
+a:hover {
+  background-color: rgb(19, 26, 102);
+  cursor: pointer;
+}
+
+a:active {
+  box-shadow: none;
+  top: 5px;
+}
+
+</style>
+
 <?php include(SHARED_PATH . '/footer.php'); ?>
-
-
