@@ -6,14 +6,7 @@
     session_start();
     session_regenerate_id();
     $_SESSION['id'] = $user['id'];
-    $_SESSION['accesslevel'] = $user['userLevel'];
-    return true;
-  }
-
-  function log_out_member() {
-    unset($_SESSION['id']);
-    unset($_SESSION['userLevel']);
-    session_unset(); 
+    $_SESSION['userLevel'] = $user['userLevel'];
     return true;
   }
 
