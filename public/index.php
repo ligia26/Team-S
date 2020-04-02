@@ -1,15 +1,15 @@
 <?php require_once('../private/initialise.php'); ?>
-    <div class="public">
+<div class="outerdiv">
 <?php include(SHARED_PATH . '/header.php'); ?>
 <?php $page_title = 'KCL Paedriatic Liver Service'; ?>
 
-    <div class="public">
-
-        <title>KCL Paedriatic Liver Service</title>
-        <br>
-
-        <img src="images/kcl.jpg" alt="Logo" id="logo">
+    <!-- <div class="outerdiv"> -->
+ 
+    <!-- <title>KCL Paedriatic Liver Service</title>  -->
     
-    </div>
+        <!-- <img src="images/nhs.png" alt="Logo" id="logo"> -->
+         <img src ="images/doctor.jpg" alt="main_image" id="doctor"> 
+    
 
 <?php include(SHARED_PATH . '/footer.php'); ?>
+</div>
