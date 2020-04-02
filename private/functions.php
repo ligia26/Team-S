@@ -1,5 +1,3 @@
-<?php require_once "Mail.php"; ?>
-
 <?php
 
 function url_for($script_path) {
@@ -53,6 +51,7 @@ function is_get_request() {
 //   mail($to, $subject, $message, $headers); 
 
 // }
+
 
 function send_email($email,$subject,$messgae){
 
@@ -111,7 +110,6 @@ function send_email($email,$subject,$messgae){
 //           'username' => 'johndoe@gmail.com',
 //           'password' => 'passwordxxx'
 //       ));
-
 
 
 
