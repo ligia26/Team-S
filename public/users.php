@@ -12,11 +12,6 @@ if (isset($_GET["delete"])) {
     header('Location: users.php');
 }
 
-if ($_SESSION['userLevel'] < 2) {
-    redirect_to('index.php');
-
-}
-
 if (isset($_POST['submitbtn'])) {
     $q = $_POST['search'];
     $user_set = search_by_username($q);
@@ -41,18 +36,6 @@ if (isset($_POST['submitbtn'])) {
                 background: #f1f1f1;
             }
 
-            form.example button {
-                float: left;
-                width: 20%;
-                padding: 10px;
-                background: #333;
-                color: white;
-                font-size: 17px;
-                border: 1px solid grey;
-                border-left: none;
-                cursor: pointer;
-                height: 42px;
-            }
 
             form.example button:hover {
                 background: black;
@@ -63,6 +46,29 @@ if (isset($_POST['submitbtn'])) {
                 clear: both;
                 display: table;
             }
+
+            #darkblue {
+                background-color: rgb(9, 66, 112);
+                color : white;
+                border: 1px solid grey;
+                font-family: 'Open Sans', sans-serif;
+                text-align: center;
+                font-size: 13px;
+                font-weight: bold;
+            }
+ 
+            #lightblue {
+                background-color: rgb(26, 201, 178);
+                color : white;
+                border: 1px solid grey;
+                font-family: 'Open Sans', sans-serif;
+                text-align: center;
+                font-size: 13px;
+                font-weight: bold;
+            }
+
+            
+
         </style>
 
     <div class="public">
@@ -72,20 +78,20 @@ if (isset($_POST['submitbtn'])) {
 
         <center>
 
-                <h1>Staff</h1>
+                <h1 id="staff">STAFF</h1>
                 <form method="post" class="example" action="users.php" style="margin:auto;max-width:700px">
                     <input type="text" name="search" placeholder="Enter Username to Search">
-                    <button name="submitbtn" type="submit"><i class="fa fa-search"></i></button>
+                    <button id = "searchbutton" name="submitbtn" type="submit"><i class="fa fa-search"></i></button>
                 </form>
                 <br>
                 <br>
                 <table>
                     <tr>
-                        <th><b>Username</b></th>
-                        <th><b>Name</b></th>
-                        <th><b>Surname</b></th>
-                        <th><b>Level</b></th>
-                        <th colspan="2"><b>Manage</b></th>
+                        <th id = "darkblue"><b>Username</b></th>
+                        <th id = "lightblue"><b>Name</b></th>
+                        <th id = "darkblue"><b>Surname</b></th>
+                        <th id = "lightblue"><b>Level</b></th>
+                        <th id = "darkblue" colspan="2"><b>Manage</b></th>
                     </tr>
                     <?php
                     while ($users = mysqli_fetch_assoc($user_set)) {
@@ -93,8 +99,8 @@ if (isset($_POST['submitbtn'])) {
                     <td>" . $users["name"] . "</td>
                     <td>" . $users["surname"] . "</td>
                     <td>" . $users["userLevel"] . "</td>
-                <td><a href=editUser.php?id=" . $users["id"] . ">Edit</a></td>
-                <td><a href=?delete=" . $users["id"] . " onclick=\"return confirm('Are you sure that you want to delete this user?');\">Delete</a></td></tr>";
+                <td> <a href=editUser.php?id=" . $users["id"] . ">Edit</a></td>
+                <td> <a href=?delete=" . $users["id"] . " onclick=\"return confirm('Are you sure that you want to delete this user?');\">Delete</a></td></tr>";
                     } ?>
 
                 </table>
@@ -103,5 +109,28 @@ if (isset($_POST['submitbtn'])) {
         </center>
 
     </div>
+<!-- <style>
+    #searchbutton{
+
+    font-size: 13px;
+    font-weight: bold;
+    padding: 10px;
+    background-color : rgb(42,103,204);
+    color:white;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    width: 50%;
+    height: 5%;
+    height: 42px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+    float:left;
+    width:20%;
+  }
+
+  
+       </style> -->
+    
 
 <?php include(SHARED_PATH . '/footer.php'); ?>
