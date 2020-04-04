@@ -222,7 +222,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <h1 id = "patient-registration">PATIENT REGISTRATION </h1>
 
-<h2> <div id = "registration-heading">Details of the person registering the patient (*Please complete all fields*) </div></h2>
+<h2> <div id = "registration-heading" style="text-align:center;">Details of the person registering the patient (*Please complete all fields*) </div></h2>
     <br>
 
    <form method="post" id="form">    <!-- Patient's Surname -->
@@ -233,25 +233,25 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     <!-- porforma -->
 
     <div class="field-column">
-      <label>Surname </label>
+      <label id="label" >Surname </label>
          <input type="text" onfocusout="isOnlyCharacter(this,'Surname')" id="lastname2" name="lastname2" pattern="[A-Za-z]{1,32}" placeholder="Required" required>
         </div>
 
     <div class="field-column">
-      <label>Forename</label>
+      <label id="label">Forename</label>
        <input type="text" onfocusout="isOnlyCharacter(this,'Forename')" id="firstname2" name="firstname2" pattern="[A-Za-z]{1,32}" placeholder="Required" required>
     </div>
 
    <div class="field-column">
-      <label>Email (@nhs.net)</label> </div>
+      <label id="label">Email (@nhs.net)</label> </div>
       <input type="text" id="email" onfocusout="ValidateNHSEmail()" name="mail2" pattern="[a-z0-9._%+-]+@nhs\.net" placeholder="Required" required>
 
    </div>
    
-    <h2> <div id = "registration-heading">Patient Details(*Please complete all fields*) </div></h2>
+    <h2> <div id = "registration-heading" style="text-align:center;">Patient Details(*Please complete all fields*) </div></h2>
 
     <div class="field-column">
-      <label>Surname</label>
+      <label id="label">Surname</label>
          <input type="text"  onfocusout="isOnlyCharacter(this,'Surname')" id="lastname" name="lastname" placeholder="Required" required>
         </div>
 
