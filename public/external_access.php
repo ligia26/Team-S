@@ -28,16 +28,16 @@
         }
         ?>
 
-        <h1>LOG IN</h1>
+        <h1  id="title-page">LOG IN</h1>
         <form name="frmRegistration" method="post" action="<?php url_for("/external_access.php")?>">
 
             <div class="field-column">
-                <label>NHS Number: </label>
+                <label id='label'>NHS Number: </label>
                 <input type="text" class="demo-input-box" name="nhsno" value="">
             </div>
 
             <div class="field-column">
-                <label>Access Code</label>
+                <label id='label'>Access Code</label>
                 <input type="password" class="demo-input-box" name="accessCode" value="">
             </div><br>
             <div class="field-column">
@@ -47,5 +47,14 @@
     </div>
     </form>
     </div>
-
+    <style>
+    #label {
+    font-size: 13px;
+    font-weight: bold;
+    color : rgb(42,103,204);
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    /* font-weight: 300; */
+    }
+    </style>
             <?php include(SHARED_PATH . '/footer.php'); ?>
