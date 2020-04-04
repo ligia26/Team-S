@@ -1,3 +1,5 @@
+<?php require_once "Mail.php"; ?> 
+
 <?php
 
 function url_for($script_path) {
@@ -28,29 +30,41 @@ function is_post_request() {
 function is_get_request() {
   return $_SERVER['REQUEST_METHOD'] == 'GET';
 }
-function send_email($email,$username,$password){
 
+function send_email($email,$subject,$messgae){
+
+  echo ('reached send mail');
+  $from = 'ticketmachineproject@gmail.com';
   $to      = $email; 
-  $subject = 'Signup verification'; 
-  $message = '
-   
-  Thanks for signing up!
-  Your account has been created, you can now login with your username and password with the credentials below:
-   
-  ------------------------
-  Username: '.$username.'
-  Password: '.$password.'
-  ------------------------
-   
-  Please log in to your account:
-  http://kingshospitallondon.herokuapp.com/login.php
-   
-  '; 
-                       
-  $headers = 'From:noreply@chesssoc.com' . "\r\n"; 
-  mail($to, $subject, $message, $headers); 
+  echo($email);
+  echo ($subject);                 
+  // $headers = 'From:noreply@chesssoc.com' . "\r\n"; 
+  $headers = array ('From' => $from, 'To' => $to, 'Subject' => $subject);
 
-}
-
+    $smtp = @Mail::factory('smtp', array(
+                  'host' => 'smtp.gmail.com',
+                  'port' => '587',
+                  'auth' => true,
+                  'STMPSecure' => "tls",
+                  'username' => 'ticketmachineproject@gmail.com',
+                  'password' => 'KCLproject'
+              ));
+              if (PEAR::isError($smtp)) {
+                echo $smtp->getMessage() . "\n" . $smtp->getUserInfo() . "\n";
+            }
+  echo ('stmp set up ! ');
+  echo($from);
+  echo($to);
+     $mail = $smtp->send($to, $headers, $message);
+    echo($mail);  
+              if (@PEAR::isError($mail)) {
+                  echo('<p>' . $mail->getMessage() . '</p>');
+                   return false;
+              } else {
+                  echo('<p>Message successfully sent!</p>');
+                  echo ('successful');
+                  return true;
+              }
+            }
 
 ?>
